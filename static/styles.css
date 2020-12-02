@@ -1,10 +1,21 @@
 html{
     font-family: 'lato';
 }
+
+.container{
+    background: rgb(148,145,35);
+    background: linear-gradient(90deg, rgba(148,145,35,1) 0%, rgba(19,20,20,1) 0%, rgba(57,79,116,1) 100%);
+}
 .display-col{
-    background-color: #F2F1F1;
+    height: content;
     /* margin: 5px; */
 }
+
+.display-row{
+    color: white;
+    margin-bottom: 5px;
+}
+
 
 #btns{
     text-align: center;
@@ -13,4 +24,13 @@ html{
 .my-card{
     height: 100%;
     text-align: center;
+    background: rgb(148,145,35);
+    background: linear-gradient(90deg, rgba(148,145,35,1) 0%, rgba(57,79,116,1) 100%, rgba(0,212,255,1) 100%); 
+    border: solid white 2px;
+    border-radius: 5px;
+}
+
+.my-card-header{
+    color: white;
+    background-color: black;
 }

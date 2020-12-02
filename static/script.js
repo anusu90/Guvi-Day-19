@@ -1,5 +1,13 @@
 let url = 'https://restcountries.eu/rest/v2/all';
 
+let url3 = 'https://api.openweathermap.org/data/2.5/weather?lat=40&lon=45&appid=c95d30d30b354709644bc377fff8ea99'
+
+async function getWeather(wUrl){
+    let res =  await fetch(wUrl);
+    let weatherData = await res.json();
+    console.log(`The temperature in ${weatherData.name} is ${(weatherData.main.temp - 273.15).toFixed(1)}. Humidity is ${weatherData.main.humidity} and can be described as "${weatherData.weather[0].description}"`);
+    alert(`The temperature in ${weatherData.name} is ${(weatherData.main.temp - 273.15).toFixed(1)}. Humidity is ${weatherData.main.humidity} and can be described as "${weatherData.weather[0].description}"`);
+}
 
 
 let state = {
@@ -22,13 +30,13 @@ displayData = (data, page)  => {
     trimmedData = trimData(data,page);
     displayNodes.forEach((node,index) => {
         node.innerHTML =  `<div class="card my-card">` +
-                          ` <div class="card-header">${trimmedData[index].name} </div>`+
+                          ` <div class="card-header my-card-header">${trimmedData[index].name} </div>`+
                           ` <div class="card-body">`+
                   //        `     <h5 class="card-title">${trimmedData[index].name}</h5>`+
-                          `     <img src="${trimmedData[index].flag}" style = "width:100%; height:38% ;margin-bottom:10px">`+
+                          `     <img src="${trimmedData[index].flag}" style = "width:100%; height:45% ;margin-bottom:10px">`+
                           `     <p class = 'capital'>Capital: ${trimmedData[index].capital}</p>`+
                           `     <p class = 'capital' >Region: ${trimmedData[index].region}</p>`+
-                          `     <p class = 'capital'><button class='btn btn-success'>Click For Weather</button> </p>` 
+                          `     <p class = 'capital'><button class='btn btn-primary weather-btn' value = 'lat=${trimmedData[index].latlng[0]}&lon=${trimmedData[index].latlng[1]}'>Click For Weather</button> </p>` 
                           
     })
 
@@ -51,6 +59,17 @@ displayData = (data, page)  => {
             displayData(JSON.parse(sessionStorage.getItem('myData')), state['page']);
         })
     })
+
+    document.querySelectorAll('.weather-btn').forEach((btn) =>{
+        console.log(btn);
+        btn.addEventListener('click', (e)=> {
+            let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?${e.target.value}&appid=c95d30d30b354709644bc377fff8ea99`
+            console.log(weatherUrl);
+            getWeather(weatherUrl);
+        });
+    })
+
+
 }
 
 async function getData(url){
@@ -61,9 +80,7 @@ async function getData(url){
         sessionStorage.setItem('myData', JSON.stringify(data))
         displayData(JSON.parse(sessionStorage.getItem('myData')), state['page']);
     } catch (error) {
-
-        console.log(error);
-        
+        console.log(error);   
     }
 }
 
