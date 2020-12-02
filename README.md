@@ -1,3 +1,3 @@
 # GUVI ASSIGNMENT
 
-![img](static/img2.png)
+![img](static/img.png)

@@ -1,12 +1,18 @@
 let url = 'https://restcountries.eu/rest/v2/all';
 
-let url3 = 'https://api.openweathermap.org/data/2.5/weather?lat=40&lon=45&appid=c95d30d30b354709644bc377fff8ea99'
+// let url3 = 'https://api.openweathermap.org/data/2.5/weather?lat=40&lon=45&appid=c95d30d30b354709644bc377fff8ea99'
 
 async function getWeather(wUrl){
-    let res =  await fetch(wUrl);
-    let weatherData = await res.json();
-    console.log(`The temperature in ${weatherData.name} is ${(weatherData.main.temp - 273.15).toFixed(1)}. Humidity is ${weatherData.main.humidity} and can be described as "${weatherData.weather[0].description}"`);
-    alert(`The temperature in ${weatherData.name} is ${(weatherData.main.temp - 273.15).toFixed(1)}. Humidity is ${weatherData.main.humidity} and can be described as "${weatherData.weather[0].description}"`);
+
+    try {
+        let res =  await fetch(wUrl);
+        let weatherData = await res.json();
+        console.log(`The temperature in ${weatherData.name} is ${(weatherData.main.temp - 273.15).toFixed(1)}. Humidity is ${weatherData.main.humidity} and can be described as "${weatherData.weather[0].description}"`);
+        alert(`The temperature in ${weatherData.name} is ${(weatherData.main.temp - 273.15).toFixed(1)}. Humidity is ${weatherData.main.humidity} and can be described as "${weatherData.weather[0].description}"`);
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 
 
@@ -53,9 +59,9 @@ displayData = (data, page)  => {
 
     listBtns = document.querySelectorAll('.page-btn').forEach((b) =>{
         b.addEventListener('click', (event)=> {
-            console.log(event.target.value);
+            // console.log(event.target.value);
             event.target.value !=0? state.page = parseInt(event.target.value): state.page = 1;
-            console.log(state)
+            // console.log(state)
             displayData(JSON.parse(sessionStorage.getItem('myData')), state['page']);
         })
     })
