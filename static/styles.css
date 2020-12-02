@@ -3,9 +3,14 @@ html{
 }
 .display-col{
     background-color: #F2F1F1;
-    margin: 5px;
+    /* margin: 5px; */
 }
 
 #btns{
+    text-align: center;
+}
+
+.my-card{
+    height: 100%;
     text-align: center;
 }
