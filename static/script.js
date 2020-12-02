@@ -21,12 +21,14 @@ displayData = (data, page)  => {
     displayNodes = document.querySelectorAll('.display-col')
     trimmedData = trimData(data,page);
     displayNodes.forEach((node,index) => {
-        node.innerHTML =  `<p> ${trimmedData[index].name} </p>` +
-                          `<img src="${trimmedData[index].flag}" style = "width:100%; height:38% ;margin-bottom:10px">` +
-                          `<p class = 'capital'>Capital: ${trimmedData[index].capital}</p> ` +
-                          `<p class = 'capital' >Region: ${trimmedData[index].region}</p>` +
-                          `<p class = 'capital'>Country Code:${trimmedData[index].alpha3Code} </p>` +
-                          `<p class = 'capital'><button class='btn btn-success'>Click For Weather</button> </p> ` 
+        node.innerHTML =  `<div class="card my-card">` +
+                          ` <div class="card-header">${trimmedData[index].name} </div>`+
+                          ` <div class="card-body">`+
+                  //        `     <h5 class="card-title">${trimmedData[index].name}</h5>`+
+                          `     <img src="${trimmedData[index].flag}" style = "width:100%; height:38% ;margin-bottom:10px">`+
+                          `     <p class = 'capital'>Capital: ${trimmedData[index].capital}</p>`+
+                          `     <p class = 'capital' >Region: ${trimmedData[index].region}</p>`+
+                          `     <p class = 'capital'><button class='btn btn-success'>Click For Weather</button> </p>` 
                           
     })
 
